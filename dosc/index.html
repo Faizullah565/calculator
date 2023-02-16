@@ -1,0 +1,274 @@
+<style>
+    #container {
+        position: absolute;
+        border: 10px solid grey;
+        padding: 5px 3px;
+        width: fit-content;
+        height: fit-content;
+        margin: auto;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 10px;
+        background-color: #bfd1ef
+    }
+
+    td {
+        border-radius: 6px;
+    }
+
+    .hide {
+        display: none;
+    }
+
+    input {
+        border-radius: 5px;
+    }
+
+    input:hover {
+        background-color: darkgrey;
+        /* cursor: pointer; */
+        color: white;
+    }
+
+    table {
+        margin-left: 6px;
+        /* margin-top: 10px; */
+        border-radius: 10px;
+
+    }
+
+    #headerOfCalculator {
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        padding: 5px 50px;
+        font-size: 30px;
+        color: darkgreen;
+    }
+
+    #headerOfCalculator:hover {
+        cursor: pointer;
+        color: magenta;
+    }
+
+    .shade {
+        color: magenta;
+    }
+
+    button {
+        width: 100%;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+    input#calculatedData {
+        width: 100%;
+    }
+
+    #inputData {
+        width: 100%;
+        height: 40px;
+    }
+
+    button:hover {
+        background-color: brown;
+        color: white;
+    }
+</style>
+<div id="container">
+    <table border="1">
+        <tr>
+            <header id="headerOfCalculator">Digital Calculator</header>
+        </tr>
+        <tr>
+            <td colspan="4"><input id="inputData" type="text"></td>
+        </tr>
+        <tr>
+            <td>Calculated Value: </td>
+            <td colspan="3"><input id="calculatedData" type="text" placeholder="Calculated Value"></td>
+        </tr>
+
+        <tr>
+            <td><button onclick="btn7()" id="butn7">7</button></td>
+            <td><button onclick="btn8()" id="butn8">8</button></td>
+            <td><button onclick="btn9()" id="butn9">9</button></td>
+            <td><button onclick="btnMult()" id="butnMult" class="shade">*</button></td>
+        </tr>
+
+        <tr>
+            <td><button onclick="btn4()" id="butn4">4</button></td>
+            <td><button onclick="btn5()" id="butn5">5</button></td>
+            <td><button onclick="btn6()" id="butn6">6</button></td>
+            <td><button onclick="btnDiv()" id="butnDiv" class="shade">/</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="btn1()" id="butn1">1</button></td>
+            <td><button onclick="btn2()" id="butn2">2</button></td>
+            <td><button onclick="btn3()" id="butn3">3</button></td>
+            <td><button onclick="btnSum()" id="butnSum" class="shade">+</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="btnPerc()" id="butnPerc" class="shade">%</button>
+
+            <td><button onclick="btn0()" id="butn0">0</button></td>
+            <td><button onclick="btnMinus()" id="butnMinus" class="shade">-</button></td>
+            <td><button onclick="btnFact()" id="butnFact" class="shade">!</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="btnDelete()" id="butnDelete" class="shade light">Delete</button>
+            <td><button onclick="btnClear()" id="butnClear" class="shade">C</button></td>
+            <td><button onclick="btnPoint()" id="butnPoint" class="shade">.</button>
+            <td><button onclick="btnEql()" id="butnEql" class="shade">=</button></td>
+
+        </tr>
+        <tr>
+            <td><button onclick="ansBtn()" class="shade">Ans:</button></td>
+            <td colspan="3"><span id="AnsBtn" class="shade">0</span></td>
+        </tr>
+
+    </table>
+</div>
+
+
+<script>
+
+    let operator;
+    let fact = 1;
+    //////////////////////// ans //////////////////////////////////
+    function ansBtn() {
+        inputData.value += AnsBtn.innerText
+    }
+    ///////////////////////////////////////////////////////////////
+    function btn1() {
+        inputData.value += butn1.innerText
+    }
+    function btn2() {
+        inputData.value += butn2.innerText
+    }
+    function btn3() {
+        inputData.value += butn3.innerText
+    }
+    //////////////////////////////////////////////////
+    function btnSum() {
+        operator = butnSum.innerText
+        inputData.value += butnSum.innerText
+    }
+    //////////////////////////////////////////////////
+    function btn4() {
+        inputData.value += butn4.innerText
+    }
+    function btn5() {
+        inputData.value += butn5.innerText
+    }
+    function btn6() {
+        inputData.value += butn6.innerText
+    }
+    //////////////////////////////////////////////
+    function btnDiv() {
+        operator = butnDiv.innerText
+        inputData.value += butnDiv.innerText
+    }
+    /////////////////////////////////////////////
+    function btn7() {
+        inputData.value += butn7.innerText
+    }
+    function btn8() {
+        inputData.value += butn8.innerText
+    }
+    function btn9() {
+        inputData.value += butn9.innerText
+    }
+    //////////////////////////////////////////////
+    function btnMult() {
+        operator = butnMult.innerText
+        inputData.value += butnMult.innerText
+    }
+    //////////////////////////////////////////////
+    function btnFact() {
+        let str = inputData.value;
+        operator = butnFact.innerText;
+        inputData.value += butnFact.innerText;
+        for (let data = 1; data <= str; data++) {
+            fact *= data;
+            //    inputData.value = null
+
+        }
+
+        // console.log(str)
+    }
+    //////////////////////////////////////////////
+    function btnPerc() {
+        operator = butnPerc.innerText
+        inputData.value += butnPerc.innerText
+    }
+    /////////////////////////////////////////////
+    function btnDelete() {
+        // butnDelete.style.background="red"
+        let val = []
+        let data = inputData.value
+        let str = data.toString();
+        val = str.split("");
+        inputData.value = ''
+        for (let i = 0; i < val.length - 1; i++) {
+            inputData.value += val[i]
+
+        }
+        // inputData.value+=butn7.innerText
+    }
+    function btn0() {
+        inputData.value += butn0.innerText
+    }
+    function btnPoint() {
+        inputData.value += butnPoint.innerText
+    }
+    //////////////////////////////////////////////
+    function btnMinus() {
+        operator = butnMinus.innerText
+        inputData.value += butnMinus.innerText
+    }
+    //////////////////////////////////////////////
+    function btnEql() {
+        if (operator == "!") {
+            calculatedData.value = inputData.value + " = " + fact;
+            AnsBtn.innerText = fact
+            fact = 1
+            inputData.value = 0
+            operator = null
+            return true
+        }
+
+        let val = inputData.value;
+        let str = val.toString();
+        let l = +str.split(operator)[0];
+        let r = +str.split(operator)[1];
+        // inputData.value=inputData.value operator butnEql.innerText
+        if (r != NaN) {
+            calculatedData.value = l;
+            if (l == NaN) {
+                calculatedData.value = r;
+            }
+
+        }
+        if (operator == "+") {
+            calculatedData.value = l + r;
+        } else if (operator == "/") {
+            calculatedData.value = l / r;
+        } else if (operator == "*") {
+            calculatedData.value = l * r;
+        } else if (operator == "-") {
+            calculatedData.value = l - r;
+        } else if (operator == "%") {
+            calculatedData.value = l % r;
+        }
+        AnsBtn.innerText = calculatedData.value
+
+        console.log(inputData.value)
+        inputData.value = null
+    }
+    function btnClear() {
+        inputData.value = null;
+        calculatedData.value = 0;
+        AnsBtn.innerText = 0
+    }
+
+</script>
